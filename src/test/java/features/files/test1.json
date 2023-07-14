@@ -1,7 +1,6 @@
 {
-  "income": 500000,
-  "maturityPeriod": 5,
-  "loanValue": 30000,
-  "homeValue": 40000,
-  "interestRate" : 2.5
+  "userName": "John Doe",
+  "sourceAccountNumber": 1234567890,
+  "destinationAccountNumber":1234567891 ,
+  "amount": 100
 }

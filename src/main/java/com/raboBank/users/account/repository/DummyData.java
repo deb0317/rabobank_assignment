@@ -29,5 +29,4 @@ public class DummyData {
 
         users = Arrays.asList(user1, user2);
     }
-
 }
