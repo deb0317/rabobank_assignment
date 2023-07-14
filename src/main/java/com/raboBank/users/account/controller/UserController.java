@@ -8,6 +8,8 @@ import com.raboBank.users.account.service.Account;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +21,15 @@ public class UserController {
     @GetMapping("/allTransactions")
     public List<User> getAllUsers() {
         return users;
+    }
+
+    @GetMapping("/balance")
+    public ResponseEntity<List<Account>> getAllAccountBalances() {
+        List<Account> accounts = new ArrayList<>();
+        for (User user : users) {
+            accounts.addAll(user.getAccounts());
+        }
+        return ResponseEntity.ok(accounts);
     }
 
     @PostMapping(value = "/withdraw", consumes = "application/json")

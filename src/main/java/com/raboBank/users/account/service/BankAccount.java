@@ -1,9 +1,9 @@
 package com.raboBank.users.account.service;
 
 import com.raboBank.users.account.exception.UserAccountException;
+import com.raboBank.users.account.model.Card;
+import com.raboBank.users.account.model.CreditCard;
 import com.raboBank.users.account.model.Transaction;
-import com.raboBank.users.account.model.User;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class BankAccount implements Account {
     private final Card card;
     private final List<Transaction> transactions;
 
-    public BankAccount(int accountNumber, double balance, User user, Card card) {
+    public BankAccount(int accountNumber, double balance, Card card) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.card = card;
