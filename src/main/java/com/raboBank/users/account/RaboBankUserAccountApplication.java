@@ -1,0 +1,13 @@
+package com.raboBank.users.account;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class RaboBankUserAccountApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(RaboBankUserAccountApplication.class, args);
+	}
+
+}
