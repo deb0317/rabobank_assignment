@@ -18,6 +18,10 @@ import static com.raboBank.users.account.repository.DummyData.users;
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
+
+    public UserController(List<User> users) {
+    }
+
     @GetMapping("/allTransactions")
     public List<User> getAllUsers() {
         return users;
@@ -55,7 +59,7 @@ public class UserController {
         return account.orElseThrow(() -> new UserAccountException("Account not found"));
     }
 
-    public static void validateUsername(String username) {
+    private  void validateUsername(String username) {
         boolean isValid = users.stream()
                 .anyMatch(user -> user.getName().equals(username));
         if (!isValid) {

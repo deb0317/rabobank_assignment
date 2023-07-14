@@ -1,0 +1,7 @@
+{
+  "income": 500000,
+  "maturityPeriod": 5,
+  "loanValue": 30000,
+  "homeValue": 40000,
+  "interestRate" : 2.5
+}

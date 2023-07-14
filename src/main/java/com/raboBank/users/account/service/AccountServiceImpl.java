@@ -7,13 +7,13 @@ import com.raboBank.users.account.model.Transaction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BankAccount implements Account {
+public class AccountServiceImpl implements Account {
     private final int accountNumber;
     private double balance;
     private final Card card;
     private final List<Transaction> transactions;
 
-    public BankAccount(int accountNumber, double balance, Card card) {
+    public AccountServiceImpl(int accountNumber, double balance, Card card) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.card = card;
