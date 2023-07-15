@@ -1,4 +1,4 @@
-package com.raboBank.users.account.repository;
+package com.raboBank.users.account.data;
 
 import com.raboBank.users.account.model.BankUser;
 import com.raboBank.users.account.service.AccountServiceImpl;

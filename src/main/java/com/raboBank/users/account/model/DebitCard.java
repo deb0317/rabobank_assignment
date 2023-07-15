@@ -11,4 +11,8 @@ public class DebitCard implements Card {
     public String getCardNumber() {
         return cardNumber;
     }
+    @Override
+    public void pay(double amount) {
+        System.out.println("Paid " + amount + " with debit card.");
+    }
 }
