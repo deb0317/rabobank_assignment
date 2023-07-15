@@ -67,3 +67,5 @@ Junit
 
 
 Karate with Cucumber Reporting ( run TestRunner.java to generate the integration test report in target/cucumber-html-reports)
+
+![img.png](img.png)
