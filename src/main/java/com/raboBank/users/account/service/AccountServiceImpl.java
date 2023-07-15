@@ -57,8 +57,7 @@ public class AccountServiceImpl implements Account {
     public String transfer(double amount, Account destinationAccount) {
         amountValidation(amount);
         if (card instanceof CreditCard) {
-            double extraCharge = amount * 0.01;
-            amount += extraCharge;
+            card.pay(amount);
         }
         balance -= amount;
         destinationAccount.deposit(amount);
