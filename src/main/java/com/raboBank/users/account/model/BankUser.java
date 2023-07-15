@@ -1,7 +1,6 @@
 package com.raboBank.users.account.model;
 
 import com.raboBank.users.account.service.Account;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,4 +1,5 @@
 package com.raboBank.users.account.config;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -27,11 +28,23 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    /**
+     * Configures the authentication manager to use the custom UserDetailsService and PasswordEncoder.
+     *
+     * @param auth AuthenticationManagerBuilder object to configure
+     * @throws Exception if an error occurs during authentication configuration
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
+    /**
+     * Configures the HTTP security settings for the application.
+     *
+     * @param http HttpSecurity object to configure
+     * @throws Exception if an error occurs during security configuration
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -41,7 +54,13 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
                 .and().csrf().disable();
     }
 
+    /**
+     * Creates a UserDetailsService bean with a single user (admin) loaded from the configuration properties.
+     *
+     * @return UserDetailsService bean
+     */
     @Bean
+    @Override
     public UserDetailsService userDetailsService() {
         UserDetails user = User.builder()
                 .username(username)
@@ -52,6 +71,11 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
         return new InMemoryUserDetailsManager(user);
     }
 
+    /**
+     * Creates a PasswordEncoder bean for encoding passwords.
+     *
+     * @return PasswordEncoder bean
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

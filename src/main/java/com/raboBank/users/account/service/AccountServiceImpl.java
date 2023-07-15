@@ -4,15 +4,27 @@ import com.raboBank.users.account.exception.UserAccountException;
 import com.raboBank.users.account.model.Card;
 import com.raboBank.users.account.model.CreditCard;
 import com.raboBank.users.account.model.Transaction;
+
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of the Account interface representing a bank account.
+ */
 public class AccountServiceImpl implements Account {
+
     private final int accountNumber;
     private double balance;
     private final Card card;
     private final List<Transaction> transactions;
 
+    /**
+     * Constructs a new AccountServiceImpl with the specified account number, balance, and card.
+     *
+     * @param accountNumber the account number
+     * @param balance       the initial account balance
+     * @param card          the card associated with the account
+     */
     public AccountServiceImpl(int accountNumber, double balance, Card card) {
         this.accountNumber = accountNumber;
         this.balance = balance;
@@ -31,7 +43,7 @@ public class AccountServiceImpl implements Account {
     }
 
     @Override
-    public String withdraw(double amount,Account account) {
+    public String withdraw(double amount, Account account) {
         amountValidation(amount);
         if (card instanceof CreditCard) {
             card.pay(amount);
@@ -45,7 +57,8 @@ public class AccountServiceImpl implements Account {
     public String transfer(double amount, Account destinationAccount) {
         amountValidation(amount);
         if (card instanceof CreditCard) {
-            card.pay(amount);
+            double extraCharge = amount * 0.01;
+            amount += extraCharge;
         }
         balance -= amount;
         destinationAccount.deposit(amount);
@@ -68,12 +81,19 @@ public class AccountServiceImpl implements Account {
         balance += amount;
         addTransaction(new Transaction("Deposit", amount));
     }
-    private void amountValidation(double amount){
+
+    /**
+     * Performs amount validation for withdrawals and transfers.
+     *
+     * @param amount the amount to validate
+     * @throws UserAccountException if the amount is greater than the balance or is zero/negative
+     */
+    private void amountValidation(double amount) {
         if (amount > balance) {
             throw new UserAccountException("Insufficient funds in the account");
         }
         if (amount <= 0) {
-            throw new UserAccountException("Amount cant be zero or negative");
+            throw new UserAccountException("Amount cannot be zero or negative");
         }
     }
 }

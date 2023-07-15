@@ -1,6 +1,10 @@
 package com.raboBank.users.account.model;
 
+import java.util.logging.Logger;
+
 public class DebitCard implements Card {
+    private static final Logger logger = Logger.getLogger(CreditCard.class.getName());
+
     private String cardNumber;
 
     public DebitCard(String cardNumber) {
@@ -13,6 +17,6 @@ public class DebitCard implements Card {
     }
     @Override
     public void pay(double amount) {
-        System.out.println("Paid " + amount + " with debit card.");
+        logger.info("Paid " + amount + " with debit card.");
     }
 }

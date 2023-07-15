@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DummyData {
-    public static List<BankUser> users;
+     public static final List<BankUser> users;
 
    static {
         // Create static user, card, and account data

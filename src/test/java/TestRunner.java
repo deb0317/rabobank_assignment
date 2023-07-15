@@ -11,15 +11,16 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class TestRunner {
     @Test
-    public void testParallel() {
+     void testParallel() {
         Results results = Runner.builder().outputCucumberJson(true)
                 .path("classpath:features").tags("~@Ignore").parallel(5);
         generateReport(results.getReportDir());
-        assertTrue(results.getErrorMessages(), results.getFailCount() == 0);
+        assertEquals(results.getErrorMessages(), results.getFailCount() == 0);
     }
     public static void generateReport(String karateOutputPath) {
         Collection jsonFiles = FileUtils.listFiles(new File(karateOutputPath), new String[] {"json"}, true);

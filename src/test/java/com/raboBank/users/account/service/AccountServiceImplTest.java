@@ -10,21 +10,24 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class AccountServiceImplTest {
+/**
+ * Unit tests for the AccountServiceImpl class.
+ */
+class AccountServiceImplTest {
 
     private AccountServiceImpl account;
     private Account destinationAccount;
 
     @BeforeEach
     public void setup() {
-        String cardNumber="9876 5432 1098 7654";
+        String cardNumber = "9876 5432 1098 7654";
         Card card = new CreditCard(cardNumber);
         account = new AccountServiceImpl(123456, 1000.0, card);
         destinationAccount = new AccountServiceImpl(789012, 500.0, card);
     }
 
     @Test
-    public void testWithdrawSufficientFunds() {
+    void testWithdrawSufficientFunds() {
         String expectedMessage = String.format("Transfer Amount: %.2f to account number: %s", 500.0, destinationAccount.getAccountNumber());
         String actualMessage = account.withdraw(500.0, destinationAccount);
         Assertions.assertEquals(expectedMessage, actualMessage);
@@ -33,7 +36,7 @@ public class AccountServiceImplTest {
     }
 
     @Test
-    public void testWithdrawInsufficientFunds() {
+    void testWithdrawInsufficientFunds() {
         Assertions.assertThrows(UserAccountException.class, () -> {
             account.withdraw(1500.0, destinationAccount);
         });
@@ -42,7 +45,7 @@ public class AccountServiceImplTest {
     }
 
     @Test
-    public void testTransferSufficientFunds() {
+    void testTransferSufficientFunds() {
         String expectedMessage = String.format("Transfer Amount: %.2f to account number: %s", 500.0, destinationAccount.getAccountNumber());
         String actualMessage = account.transfer(500.0, destinationAccount);
         Assertions.assertEquals(expectedMessage, actualMessage);
@@ -51,7 +54,7 @@ public class AccountServiceImplTest {
     }
 
     @Test
-    public void testTransferInsufficientFunds() {
+    void testTransferInsufficientFunds() {
         Assertions.assertThrows(UserAccountException.class, () -> {
             account.transfer(1500.0, destinationAccount);
         });
@@ -60,7 +63,7 @@ public class AccountServiceImplTest {
     }
 
     @Test
-    public void testAddTransaction() {
+    void testAddTransaction() {
         Transaction transaction = new Transaction("Deposit", 100.0);
         account.addTransaction(transaction);
         List<Transaction> transactions = account.getTransactions();
@@ -69,7 +72,7 @@ public class AccountServiceImplTest {
     }
 
     @Test
-    public void testDeposit() {
+    void testDeposit() {
         account.deposit(200.0);
         Assertions.assertEquals(1200.0, account.getBalance());
     }
