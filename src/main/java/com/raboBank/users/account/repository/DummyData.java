@@ -1,6 +1,6 @@
 package com.raboBank.users.account.repository;
 
-import com.raboBank.users.account.model.User;
+import com.raboBank.users.account.model.BankUser;
 import com.raboBank.users.account.service.AccountServiceImpl;
 import com.raboBank.users.account.model.CreditCard;
 import com.raboBank.users.account.model.DebitCard;
@@ -9,12 +9,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DummyData {
-    public static List<User> users;
+    public static List<BankUser> users;
 
    static {
         // Create static user, card, and account data
-        User user1 = new User("U1", "John Doe", "123 Main St");
-        User user2 = new User("U2", "Jane Smith", "456 Elm St");
+        BankUser user1 = new BankUser("U1", "John Doe", "123 Main St");
+        BankUser user2 = new BankUser("U2", "Jane Smith", "456 Elm St");
 
         DebitCard debitCard1 = new DebitCard("1234 5678 9012 3456");
         CreditCard creditCard1 = new CreditCard("9876 5432 1098 7654");

@@ -5,13 +5,13 @@ import com.raboBank.users.account.service.Account;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class BankUser {
         private String id;
         private String name;
         private String address;
         private List<Account> accounts;
 
-        public User(String id, String name, String address) {
+        public BankUser(String id, String name, String address) {
             this.id = id;
             this.name = name;
             this.address = address;

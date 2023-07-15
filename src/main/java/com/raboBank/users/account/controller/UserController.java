@@ -2,13 +2,14 @@ package com.raboBank.users.account.controller;
 
 import com.raboBank.users.account.exception.UserAccountException;
 import com.raboBank.users.account.model.TransferRequest;
-import com.raboBank.users.account.model.User;
+import com.raboBank.users.account.model.BankUser;
 import com.raboBank.users.account.model.WithdrawRequest;
 import com.raboBank.users.account.service.Account;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,18 +20,17 @@ import static com.raboBank.users.account.repository.DummyData.users;
 @RequestMapping("/api/users")
 public class UserController {
 
-    public UserController(List<User> users) {
-    }
+
 
     @GetMapping("/allTransactions")
-    public List<User> getAllUsers() {
+    public List<BankUser> getAllUsers() {
         return users;
     }
 
     @GetMapping("/balance")
     public ResponseEntity<List<Account>> getAllAccountBalances() {
         List<Account> accounts = new ArrayList<>();
-        for (User user : users) {
+        for (BankUser user : users) {
             accounts.addAll(user.getAccounts());
         }
         return ResponseEntity.ok(accounts);
@@ -66,5 +66,6 @@ public class UserController {
             throw new UserAccountException("Username not found");
         }
     }
+
 
 }
