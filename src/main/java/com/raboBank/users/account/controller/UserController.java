@@ -6,6 +6,7 @@ import com.raboBank.users.account.model.BankUser;
 import com.raboBank.users.account.model.WithdrawRequest;
 import com.raboBank.users.account.service.Account;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,12 +16,9 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.raboBank.users.account.repository.DummyData.users;
-@Validated
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
-
-
 
     @GetMapping("/allTransactions")
     public List<BankUser> getAllUsers() {
@@ -37,10 +35,11 @@ public class UserController {
     }
 
     @PostMapping(value = "/withdraw", consumes = "application/json")
+
     public ResponseEntity<String> withdraw(@RequestBody WithdrawRequest withdrawRequest) {
         validateUsername(withdrawRequest.getUserName());
         return ResponseEntity.ok(findAccountByNumber(withdrawRequest.getAccountNumber()).withdraw(withdrawRequest.getAmount(), findAccountByNumber(withdrawRequest.getAccountNumber())));
-     }
+    }
 
     @PostMapping(value = "/transfer", consumes = "application/json")
     public ResponseEntity<String> transfer(@RequestBody TransferRequest transferRequest) {

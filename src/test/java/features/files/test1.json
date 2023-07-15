@@ -1,6 +1,6 @@
 {
-  "userName": "John Doe",
-  "sourceAccountNumber": 1234567890,
-  "destinationAccountNumber":1234567891 ,
+  "userName":"John Doe",
+  "sourceAccountNumber":1234567890,
+  "destinationAccountNumber":1234567891,
   "amount": 100
 }
